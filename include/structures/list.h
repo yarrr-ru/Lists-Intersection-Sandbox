@@ -11,5 +11,9 @@ typedef struct {
 } list_t;
 
 int list_read_file(FILE * file, list_t * list);
-uint32_t list_sz(list_t * list);
-uint32_t list_at(list_t * list, uint32_t index);
+
+size_t list_sz(const list_t * list);
+uint32_t list_at(const list_t * list, uint32_t index);
+
+uint32_t * list_begin(const list_t * list);
+uint32_t * list_end(const list_t * list);

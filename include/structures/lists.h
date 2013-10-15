@@ -11,6 +11,6 @@ typedef struct {
 } lists_t;
 
 void lists_read(const char * filename, lists_t * lists);
-uint32_t lists_sz(lists_t * list);
-list_t lists_at(lists_t * list, uint32_t index);
+size_t lists_sz(const lists_t * list);
+list_t lists_at(const lists_t * list, uint32_t index);
 

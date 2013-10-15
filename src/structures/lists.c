@@ -8,7 +8,8 @@ static void lists_read_file(FILE * file, lists_t * lists) {
   lists->size = 0;
   uint32_t list_size;
   while(fread(&list_size, sizeof(list_size), 1, file) == 1) {
-    assert(fseek(file, list_size * sizeof(*(lists->data->data)), SEEK_CUR) == 0);
+    assert(fseek(file, list_size * sizeof(*(lists->data->data)),
+                 SEEK_CUR) == 0);
     ++(lists->size);
   }
   // Check that all file readed
@@ -35,11 +36,11 @@ void lists_read(const char * filename, lists_t * lists) {
   assert(fclose(file) == 0);
 }
 
-uint32_t lists_sz(lists_t * lists) {
+size_t lists_sz(const lists_t * lists) {
   return lists->size;
 }
 
-list_t lists_at(lists_t * lists, uint32_t index) {
+list_t lists_at(const lists_t * lists, uint32_t index) {
   assert(index < lists->size);
   return lists->data[index];
 }

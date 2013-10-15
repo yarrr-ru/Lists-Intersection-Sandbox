@@ -11,15 +11,24 @@ int list_read_file(FILE * file, list_t * list) {
   // Read data
   list->data = (uint32_t *) malloc(sizeof(*(list->data)) * list->size);
   assert(list->data != NULL);
-  assert(fread(list->data, sizeof(*(list->data)), list->size, file) == list->size);
+  assert(fread(list->data, sizeof(*(list->data)),
+         list->size, file) == list->size);
   return 1;
 }
 
-uint32_t list_sz(list_t * list) {
+size_t list_sz(const list_t * list) {
   return list->size;
 }
 
-uint32_t list_at(list_t * list, uint32_t index) {
+uint32_t list_at(const list_t * list, uint32_t index) {
   assert(index < list->size);
   return list->data[index];
+}
+
+uint32_t * list_begin(const list_t * list) {
+  return list->data;
+}
+
+uint32_t * list_end(const list_t * list) {
+  return list->data + list->size;
 }
