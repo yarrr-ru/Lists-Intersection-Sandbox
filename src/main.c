@@ -29,7 +29,7 @@ int main(void) {
 
   // Arrays for results
   uint32_t results[algorithms_sz][INTERSECTION_SZ];
-  size_t result_sizes[algorithms_sz];
+  size_t result_sizes[algorithms_sz], total_sizes[algorithms_sz];
 
   // Intersect
   for(size_t query_id = 0; query_id < lists_sz(&queries); query_id++) {
@@ -49,6 +49,7 @@ int main(void) {
                   INTERSECTION_SZ, results[i]);
       timer_end(&timers[i]);
       assert(result_sizes[i] <= INTERSECTION_SZ);
+      total_sizes[i] += result_sizes[i];
     }
     // Check results
     for(size_t i = 1; i < algorithms_sz; i++) {
@@ -60,7 +61,7 @@ int main(void) {
 
   // Print timer results
   for(size_t i = 0; i < algorithms_sz; i++) {
-    printf("%lu\t%lf\n", i, timer_total(&timers[i]));
+    printf("%lu\t%lu\t%lf\n", i, total_sizes[i], timer_total(&timers[i]));
   }
 
   return 0;
