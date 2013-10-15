@@ -70,7 +70,9 @@ int main(void) {
 
   // Print timer results
   for(size_t i = 0; i < algorithms_sz; i++) {
-    printf("%lu\t%lu\t%lf\n", i, total_sizes[i], timer_total(&timers[i]));
+    const double lists_per_sec = lists_sz(&queries) / timer_total(&timers[i]);
+    printf("%lu\t%lu\t%lf\t%lf\n", i, total_sizes[i], timer_total(&timers[i]),
+                                   lists_per_sec);
   }
 
   return 0;
