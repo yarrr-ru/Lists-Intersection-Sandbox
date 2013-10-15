@@ -2,7 +2,7 @@
 
 #include "structures/lists.h"
 
-static void lists_read_file(FILE * file, lists_t * lists) {
+static void lists_read_file(FILE * file, lists_t * lists, bool check_lists) {
   assert(file != NULL);
   // Get total lists count
   lists->size = 0;
@@ -21,8 +21,7 @@ static void lists_read_file(FILE * file, lists_t * lists) {
   assert(lists->data != NULL);
   // Read lists
   uint32_t list_id = 0;
-  while(list_read_file(file, &(lists->data[list_id])) == 1) {
-    printf("List %u ended\n", list_id);
+  while(list_read_file(file, &(lists->data[list_id], check_lists)) == 1) {
     ++list_id;
   }
   assert(list_id == lists->size);

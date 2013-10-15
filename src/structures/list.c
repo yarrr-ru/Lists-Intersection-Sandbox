@@ -2,7 +2,7 @@
 
 #include "structures/list.h"
 
-int list_read_file(FILE * file, list_t * list) {
+int list_read_file(FILE * file, list_t * list, bool check_list) {
   // Read list size
   assert(file != NULL);
   if(fread(&(list->size), sizeof(list->size), 1, file) != 1) {
@@ -14,12 +14,10 @@ int list_read_file(FILE * file, list_t * list) {
   assert(fread(list->data, sizeof(*(list->data)),
          list->size, file) == list->size);
   // Check data
-  for(size_t i = 1; i < list->size; i++) {
-    if(list->data[i - 1] >= list->data[i]) {
-      printf("%lu %u %u\n", i, list->data[i - 1], list->data[i]);
+  if(check_list) {
+    for(size_t i = 1; i < list->size; i++) {
+      assert(list->data[i - 1] < list->data[i]);
     }
-
-    //assert(list->data[i - 1] < list->data[i]);
   }
   return 1;
 }

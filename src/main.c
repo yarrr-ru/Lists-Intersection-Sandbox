@@ -14,8 +14,8 @@
 int main(void) {
   // Read lists
   lists_t lists, queries;
-  lists_read(LISTS_FN, &lists);
-  lists_read(QUERIES_FN, &queries);
+  lists_read(LISTS_FN, &lists, true);
+  lists_read(QUERIES_FN, &queries, false);
 
   // Algorithms
   const intersector_f algorithms[1] = {dumb_intersect};

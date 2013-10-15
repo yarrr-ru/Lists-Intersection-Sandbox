@@ -10,7 +10,7 @@ typedef struct {
   uint32_t * data;
 } list_t;
 
-int list_read_file(FILE * file, list_t * list);
+int list_read_file(FILE * file, list_t * list, bool check_list);
 
 size_t list_sz(const list_t * list);
 uint32_t list_at(const list_t * list, uint32_t index);
