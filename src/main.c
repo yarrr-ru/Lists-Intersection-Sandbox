@@ -35,7 +35,7 @@ int main(void) {
   // Intersect
   for(size_t query_id = 0; query_id < lists_sz(&queries); query_id++) {
     // Get lists for intersection
-    const list_t query = lists_at(&queries, 1);
+    const list_t query = lists_at(&queries, query_id);
     const size_t lists_in_query = list_sz(&query);
     list_t lists_to_intersect[lists_in_query];
     for(size_t i = 0; i < lists_in_query; i++) {
@@ -59,13 +59,13 @@ int main(void) {
                     sizeof(uint32_t) * result_sizes[i]) == 0);
     }
     // Debug
-    printf("lists: %lu\tsize: %lu\n", lists_in_query, result_sizes[0]);
+    /*printf("lists: %lu\tsize: %lu\n", lists_in_query, result_sizes[0]);
     printf("[");
     for(size_t i = 0; i < result_sizes[0]; i++) {
       printf("%u", results[0][i]);
       printf("%c", ",]"[(i + 1) == result_sizes[0]]);
     }
-    printf("\n");
+    printf("\n");*/
   }
 
   // Print timer results
