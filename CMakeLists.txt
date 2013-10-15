@@ -10,6 +10,7 @@ set(SOURCES
   src/main.c
   src/structures/list.c
   src/structures/lists.c
+  src/structures/timer.c
   src/algorithms/dumb.c
 )
 

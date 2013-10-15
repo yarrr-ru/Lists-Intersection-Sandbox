@@ -4,6 +4,7 @@
 
 #include "interfaces/intersector.h"
 #include "structures/lists.h"
+#include "structures/timer.h"
 #include "algorithms/dumb.h"
 
 #define LISTS_FN          "../data/lists.dat"
@@ -19,6 +20,12 @@ int main(void) {
   // Algorithms
   const intersector_f algorithms[1] = {dumb_intersect};
   const size_t algorithms_sz = sizeof(algorithms) / sizeof(algorithms[0]);
+
+  // Timers for algorithms
+  timer_t timers[algorithms_sz];
+  for(size_t i = 0; i < algorithms_sz; i++) {
+    timer_init(&timers[i]);
+  }
 
   // Arrays for results
   uint32_t results[algorithms_sz][INTERSECTION_SZ];
@@ -36,9 +43,11 @@ int main(void) {
     // Intersect
     for(size_t i = 0; i < algorithms_sz; i++) {
       intersector_f algorithm = algorithms[i];
+      timer_start(&timers[i]);
       result_sizes[i] = 
         algorithm(list_sz(&query), lists_to_intersect,
                   INTERSECTION_SZ, results[i]);
+      timer_end(&timers[i]);
       assert(result_sizes[i] <= INTERSECTION_SZ);
     }
     // Check results
@@ -50,6 +59,9 @@ int main(void) {
   }
 
   // Print timer results
+  for(size_t i = 0; i < algorithms_sz; i++) {
+    printf("%d\t%lf\n", (int) i, timer_total(&timers[i]));
+  }
 
   return 0;
 }

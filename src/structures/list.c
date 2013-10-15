@@ -13,6 +13,10 @@ int list_read_file(FILE * file, list_t * list) {
   assert(list->data != NULL);
   assert(fread(list->data, sizeof(*(list->data)),
          list->size, file) == list->size);
+  // Check data
+  for(size_t i = 1; i < list->size; i++) {
+    assert(list->data[i - 1] < list->data[i]);
+  }
   return 1;
 }
 

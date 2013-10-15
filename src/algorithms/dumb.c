@@ -32,10 +32,8 @@ size_t dumb_intersect(size_t lists_sz, const list_t * lists,
         empty_list = true;
       }
 
-      const uint32_t cur_head = *begins[i];
-
-      if(cur_head > max_head) {
-        max_head = cur_head;
+      if(*begins[i] > max_head) {
+        max_head = *begins[i];
       }
     }
 
