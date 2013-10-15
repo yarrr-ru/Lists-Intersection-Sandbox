@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
+#include <inttypes.h>
 
 #include "interfaces/intersector.h"
 #include "structures/lists.h"
@@ -45,7 +46,7 @@ int main(void) {
       intersector_f algorithm = algorithms[i];
       timer_start(&timers[i]);
       result_sizes[i] = 
-        algorithm(list_sz(&query), lists_to_intersect,
+        algorithm(lists_in_query, lists_to_intersect,
                   INTERSECTION_SZ, results[i]);
       timer_end(&timers[i]);
       assert(result_sizes[i] <= INTERSECTION_SZ);
@@ -57,6 +58,14 @@ int main(void) {
       assert(memcmp(results[i - 1], results[i],
                     sizeof(uint32_t) * result_sizes[i]) == 0);
     }
+    // Debug
+    printf("lists: %lu\tsize: %lu\n", lists_in_query, result_sizes[0]);
+    printf("[");
+    for(size_t i = 0; i < result_sizes[0]; i++) {
+      printf("%u", results[0][i]);
+      printf("%c", ",]"[(i + 1) == result_sizes[0]]);
+    }
+    printf("\n");
   }
 
   // Print timer results
