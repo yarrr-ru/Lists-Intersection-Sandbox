@@ -22,6 +22,7 @@ static void lists_read_file(FILE * file, lists_t * lists) {
   // Read lists
   uint32_t list_id = 0;
   while(list_read_file(file, &(lists->data[list_id])) == 1) {
+    printf("List %u ended\n", list_id);
     ++list_id;
   }
   assert(list_id == lists->size);

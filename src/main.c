@@ -60,7 +60,7 @@ int main(void) {
 
   // Print timer results
   for(size_t i = 0; i < algorithms_sz; i++) {
-    printf("%d\t%lf\n", (int) i, timer_total(&timers[i]));
+    printf("%lu\t%lf\n", i, timer_total(&timers[i]));
   }
 
   return 0;
