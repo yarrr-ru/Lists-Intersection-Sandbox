@@ -10,7 +10,8 @@
 
 #define LISTS_FN          "../data/lists.dat"
 #define QUERIES_FN        "../data/queries.dat"
-#define INTERSECTION_SZ   80
+#define INTERSECTION_SZ   128
+#define QUERIES_LIMIT     10000
 
 int main(void) {
   // Read lists
@@ -32,8 +33,12 @@ int main(void) {
   uint32_t results[algorithms_sz][INTERSECTION_SZ];
   size_t result_sizes[algorithms_sz], total_sizes[algorithms_sz];
 
+  // Get limit for queries
+  const size_t max_query_id = (lists_sz(&queries) < QUERIES_LIMIT)
+                               ? lists_sz(&queries) : QUERIES_LIMIT;
+
   // Intersect
-  for(size_t query_id = 0; query_id < lists_sz(&queries); query_id++) {
+  for(size_t query_id = 0; query_id < max_query_id; query_id++) {
     // Get lists for intersection
     const list_t query = lists_at(&queries, query_id);
     const size_t lists_in_query = list_sz(&query);
