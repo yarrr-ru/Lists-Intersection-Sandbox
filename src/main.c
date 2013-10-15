@@ -11,7 +11,7 @@
 #define LISTS_FN          "../data/lists.dat"
 #define QUERIES_FN        "../data/queries.dat"
 #define INTERSECTION_SZ   128
-#define QUERIES_LIMIT     10000
+#define QUERIES_LIMIT     20000
 
 int main(void) {
   // Read lists
@@ -62,21 +62,12 @@ int main(void) {
       assert(memcmp(results[i - 1], results[i],
                     sizeof(uint32_t) * result_sizes[i]) == 0);
     }
-    // Debug
-    /*printf("lists: %lu\tsize: %lu\n", lists_in_query, result_sizes[0]);
-    printf("[");
-    for(size_t i = 0; i < result_sizes[0]; i++) {
-      printf("%u", results[0][i]);
-      printf("%c", ",]"[(i + 1) == result_sizes[0]]);
-    }
-    printf("\n");*/
   }
 
   // Print timer results
   for(size_t i = 0; i < algorithms_sz; i++) {
     const double lists_per_sec = (double) max_query_id / timer_total(&timers[i]);
-    printf("%lf\t%lf\n", timer_total(&timers[i]),
-                                   lists_per_sec);
+    printf("%lf\n", lists_per_sec);
   }
 
   return 0;
