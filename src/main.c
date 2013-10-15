@@ -31,7 +31,7 @@ int main(void) {
 
   // Arrays for results
   uint32_t results[algorithms_sz][INTERSECTION_SZ];
-  size_t result_sizes[algorithms_sz], total_sizes[algorithms_sz];
+  size_t result_sizes[algorithms_sz];
 
   // Get limit for queries
   const size_t max_query_id = (lists_sz(&queries) < QUERIES_LIMIT)
@@ -55,7 +55,6 @@ int main(void) {
                   INTERSECTION_SZ, results[i]);
       timer_end(&timers[i]);
       assert(result_sizes[i] <= INTERSECTION_SZ);
-      total_sizes[i] += result_sizes[i];
     }
     // Check results
     for(size_t i = 1; i < algorithms_sz; i++) {
@@ -75,8 +74,8 @@ int main(void) {
 
   // Print timer results
   for(size_t i = 0; i < algorithms_sz; i++) {
-    const double lists_per_sec = lists_sz(&queries) / timer_total(&timers[i]);
-    printf("%lu\t%lu\t%lf\t%lf\n", i, total_sizes[i], timer_total(&timers[i]),
+    const double lists_per_sec = (double) max_query_id / timer_total(&timers[i]);
+    printf("%lf\t%lf\n", timer_total(&timers[i]),
                                    lists_per_sec);
   }
 
