@@ -21,7 +21,7 @@ static void lists_read_file(FILE * file, lists_t * lists, bool check_lists) {
   assert(lists->data != NULL);
   // Read lists
   uint32_t list_id = 0;
-  while(list_read_file(file, &(lists->data[list_id], check_lists)) == 1) {
+  while(list_read_file(file, &(lists->data[list_id]), check_lists) == 1) {
     ++list_id;
   }
   assert(list_id == lists->size);
@@ -29,10 +29,10 @@ static void lists_read_file(FILE * file, lists_t * lists, bool check_lists) {
   assert(feof(file) != 0);
 }
 
-void lists_read(const char * filename, lists_t * lists) {
+void lists_read(const char * filename, lists_t * lists, bool check_lists) {
   FILE * file = fopen(filename, "r");
   assert(file != NULL);
-  lists_read_file(file, lists);
+  lists_read_file(file, lists, check_lists);
   assert(fclose(file) == 0);
 }
 
