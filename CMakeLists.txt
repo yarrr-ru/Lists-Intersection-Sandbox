@@ -4,10 +4,13 @@ set(PROJECT sandbox)
 
 project(${PROJECT})
 
-SET(CMAKE_C_FLAGS "-std=c99 -pedantic -Wall -Wshadow -Wpointer-arith -Wcast-qual -Wextra -Wold-style-definition")
+SET(CMAKE_C_FLAGS "-std=c99 -pedantic -Wall -Wshadow -Wpointer-arith -Wcast-qual -Wextra -Wold-style-definition -O2")
 
 set(SOURCES
   src/main.c
+  src/structures/list.c
+  src/structures/lists.c
+  src/algorithms/dumb.c
 )
 
 include_directories(
