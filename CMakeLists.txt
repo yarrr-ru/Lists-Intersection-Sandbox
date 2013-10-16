@@ -14,6 +14,7 @@ set(SOURCES
   src/intersectors/dumb.c
   src/intersectors/dumb_bs.c
   src/intersectors/mail_ru.c
+  src/intersectors/mail_ru_improved.c
   src/algorithms/binary_search.c
   src/algorithms/gallop_binary_search.c
 )
