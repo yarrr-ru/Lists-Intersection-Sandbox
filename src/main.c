@@ -6,7 +6,8 @@
 #include "interfaces/intersector.h"
 #include "structures/lists.h"
 #include "structures/timer.h"
-#include "algorithms/dumb.h"
+#include "intersectors/dumb.h"
+#include "intersectors/dumb_bs.h"
 
 #define LISTS_FN          "../data/lists.dat"
 #define QUERIES_FN        "../data/queries.dat"
@@ -20,7 +21,7 @@ int main(void) {
   lists_read(QUERIES_FN, &queries, false);
 
   // Algorithms
-  const intersector_f algorithms[1] = {dumb_intersect};
+  const intersector_f algorithms[2] = {dumb_intersect, dumb_bs_intersect};
   const size_t algorithms_sz = sizeof(algorithms) / sizeof(algorithms[0]);
 
   // Timers for algorithms

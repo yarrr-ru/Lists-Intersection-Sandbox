@@ -11,7 +11,9 @@ set(SOURCES
   src/structures/list.c
   src/structures/lists.c
   src/structures/timer.c
-  src/algorithms/dumb.c
+  src/intersectors/dumb.c
+  src/intersectors/dumb_bs.c
+  src/algorithms/binary_search.c
 )
 
 include_directories(
