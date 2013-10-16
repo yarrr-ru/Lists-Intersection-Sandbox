@@ -15,8 +15,10 @@ set(SOURCES
   src/intersectors/dumb_bs.c
   src/intersectors/mail_ru.c
   src/intersectors/mail_ru_improved.c
+  src/intersectors/baeza_yates.c
   src/algorithms/binary_search.c
   src/algorithms/gallop_binary_search.c
+  src/algorithms/linear_gallop_binary_search.c
 )
 
 include_directories(
