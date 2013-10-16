@@ -13,7 +13,9 @@ set(SOURCES
   src/structures/timer.c
   src/intersectors/dumb.c
   src/intersectors/dumb_bs.c
+  src/intersectors/mail_ru.c
   src/algorithms/binary_search.c
+  src/algorithms/gallop_binary_search.c
 )
 
 include_directories(
